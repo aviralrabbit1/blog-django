@@ -75,4 +75,16 @@
             return HttpResponse('Hello world')
 
         ```
-        
+10. Install dependencies - 
+   - `Django REST framework`: It is a powerful and flexible toolkit for building Web APIs, also used for **Authentication** policies like OAuth1a and OAuth2, **Serialization** that supports both ORM and non-ORM data sources, regular function based views, etc.
+        ```sh
+        pip install djangorestframework
+        ``` 
+   - `Django-cors-headers`: Adds Cross-Origin Resource Sharing (CORS) headers to responses. This allows in-browser requests to your Django application from other origins
+        ```sh
+        pip install django-cors-headers
+        ``` 
+Both can be installed together with
+```sh
+python -m pip install djangorestframework django-cors-headers
+```
