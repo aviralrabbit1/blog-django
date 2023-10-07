@@ -26,32 +26,77 @@
    ```
 
 5. From the root directory, run 
-```sh
-django-admin startproject core
-# rename the outer core folder
-mv core backend
-```
+    ```sh
+    django-admin startproject core
+    # rename the outer core folder
+    mv core backend
+    ```
 
 6. Start an app inside `{root}/backend`
-```sh
-cd backend
-python manage.py startapp BlogApp
-```
+    ```sh
+    cd backend
+    python manage.py startapp BlogApp
+    ```
 
 7. In `backend/core/settings.py`, add dependencies(if any) and `BlogApp` (app name)
-```py
-# backend/core/settings.py
-INSTALLED_APPS = [
-   ...
-   'BlogApp'
-   ...
-]
+    ```py
+    # backend/core/settings.py
+    INSTALLED_APPS = [
+    ...
+    'BlogApp'
+    ...
+    ]
+    ```
+8. In `backend/core/urls.py`, add `BlogApp.urls` to urlpatterns
+    ```py
+    # backend/core/urls.py
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('admin/', include('BlogApp.urls')),
+    ]
+    ```
+9. To show "Hello World!", 
+    - Create `backend/BlogApp/urls.py`
+        ```py
+        # backend/BlogApp/urls.py
+        from django.urls import path
+        from . import views
+
+        urlpatterns = [
+            path('', views.home, name='home'),
+        ]    
+        ```
+    - In `backend/BlogApp/views.py`, add this
+        ```py
+        # backend/BlogApp/views.py
+        from django.http import HttpResponse
+
+        def home(request):
+            return HttpResponse('Hello world')
+
+        ```
+10. Install dependencies - 
+   - `Django REST framework`: It is a powerful and flexible toolkit for building Web APIs, also used for **Authentication** policies like OAuth1a and OAuth2, **Serialization** that supports both ORM and non-ORM data sources, regular function based views, etc.
+        ```sh
+        pip install djangorestframework
+        ``` 
+   - `Django-cors-headers`: Adds Cross-Origin Resource Sharing (CORS) headers to responses. This allows in-browser requests to your Django application from other origins
+        ```sh
+        pip install django-cors-headers
+        ``` 
+Both can be installed together with
+```sh
+python -m pip install djangorestframework django-cors-headers
 ```
-1. In `backend/core/urls.py`, add `BlogApp.urls` to urlpatterns
-```py
-# backend/core/urls.py
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('admin/', include('BlogApp.urls')),
-]
+
+11. Make a model for the BlogApp. Then migrate to propagate changes to the models (adding a field, deleting a model, etc.) into the database schema. 
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+`migrate` executes the SQL commands in the database file. So after executing migrate all the tables of the app are created in the database file.
+
+12. Create a superuser with 
+```sh
+python manage.py createsuperuser
 ```
