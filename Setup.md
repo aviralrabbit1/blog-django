@@ -88,3 +88,15 @@ Both can be installed together with
 ```sh
 python -m pip install djangorestframework django-cors-headers
 ```
+
+11. Make a model for the BlogApp. Then migrate to propagate changes to the models (adding a field, deleting a model, etc.) into the database schema. 
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+`migrate` executes the SQL commands in the database file. So after executing migrate all the tables of the app are created in the database file.
+
+12. Create a superuser with 
+```sh
+python manage.py createsuperuser
+```
