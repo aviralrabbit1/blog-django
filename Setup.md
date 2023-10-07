@@ -47,3 +47,11 @@ INSTALLED_APPS = [
    ...
 ]
 ```
+1. In `backend/core/urls.py`, add `BlogApp.urls` to urlpatterns
+```py
+# backend/core/urls.py
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('admin/', include('BlogApp.urls')),
+]
+```
