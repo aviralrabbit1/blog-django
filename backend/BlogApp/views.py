@@ -18,3 +18,9 @@ def home(request):
     # many=True argument indicates serializing a queryset with multiple objects.
     return HttpResponse(serialize.data) 
     # returns an HTTP response containing the serialized data as the response content
+
+@api_view(['GET'])
+def category(request):
+    category = Category.objects.all()
+    serialize = CategorySerializer(category, many = True)
+    return HttpResponse(serialize.data)
