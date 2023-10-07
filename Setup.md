@@ -24,3 +24,10 @@
    ```sh
    django-admin --version
    ```
+
+5. From root directory,
+```sh
+django-admin startproject core
+# rename the outer core folder
+mv core backend
+```
