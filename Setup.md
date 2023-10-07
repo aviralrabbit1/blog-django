@@ -25,7 +25,7 @@
    django-admin --version
    ```
 
-5. From root directory,
+5. From the root directory, run 
 ```sh
 django-admin startproject core
 # rename the outer core folder
