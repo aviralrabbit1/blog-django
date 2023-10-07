@@ -21,6 +21,12 @@ def home(request):
 
 @api_view(['GET'])
 def category(request):
-    category = Category.objects.all()
-    serialize = CategorySerializer(category, many = True)
+    categories = Category.objects.all()
+    serialize = CategorySerializer(categories, many = True)
+    return HttpResponse(serialize.data)
+
+@api_view(['GET'])
+def users(request):
+    user = User.objects.all()
+    serialize = UserSerializer(user, many = True)
     return HttpResponse(serialize.data)
