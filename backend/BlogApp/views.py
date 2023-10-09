@@ -18,3 +18,26 @@ def home(request):
     # many=True argument indicates serializing a queryset with multiple objects.
     return HttpResponse(serialize.data) 
     # returns an HTTP response containing the serialized data as the response content
+
+@api_view(['GET'])
+def category(request):
+    categories = Category.objects.all()
+    serialize = CategorySerializer(categories, many = True)
+    return HttpResponse(serialize.data)
+
+@api_view(['GET'])
+def users(request):
+    user = User.objects.all()
+    serialize = UserSerializer(user, many = True)
+    return HttpResponse(serialize.data)
+
+@api_view(['POST'])
+def user_registration(request):
+    serializer = UserRegSerializer(data=request.data)
+    # serializer UserRegSerializer is initialized with the data from the HTTP request 
+    if serializer.is_valid(): # checks if the data provided in the request is valid 
+                              # according to the rules defined in the UserRegSerializer
+        user = serializer.save() # If the data is valid, save the data to create a new user in the database
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
