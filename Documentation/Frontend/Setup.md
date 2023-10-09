@@ -126,3 +126,12 @@ const Home = () => {
 
 export default Home
 ```
+
+### 5. Material UI
+```sh
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
+or
+```sh
+pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
