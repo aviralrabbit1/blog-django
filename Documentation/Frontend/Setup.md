@@ -2,7 +2,7 @@
 
 From root directory,
 ```sh
-mkdri frontend
+mkdir frontend
 cd frontend
 npx degit reduxjs/redux-templates/packages/vite-template-redux blog-app
 cd blog-app
