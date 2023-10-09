@@ -21,12 +21,16 @@ const Navbar = () => {
           </div>
           <div className='flex gap-5 font-semibold'>
             <Link to='/login'>
-            <button className='bg-gradient-to-r from-indigo-400 from-15% via-pink-1000 to-purple-600
-            py-3 px-5 text-white rounded-xl text-lg shadow-md shadow-purple' >Login</button>
+              <button className='bg-gradient-to-r from-indigo-400 from-15% via-pink-1000 to-purple-600
+              py-3 px-5 text-white rounded-xl text-lg shadow-md shadow-purple' >
+                Login
+              </button>
             </Link>
             <Link to='/register'>
-            <button className='bg-gradient-to-r from-indigo-400 from-15% via-pink-1000 to-purple-600
-            py-3 px-5 text-white rounded-xl '>Register</button>
+              <button className='bg-gradient-to-r from-indigo-400 from-15% via-pink-1000 to-purple-600
+              py-3 px-5 text-white rounded-xl '>
+                Register
+              </button>
             </Link>
           </div>
       </nav>
