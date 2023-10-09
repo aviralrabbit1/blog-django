@@ -1,4 +1,4 @@
-### Redux template
+### 1. Redux template
 
 From root directory,
 ```sh
@@ -9,7 +9,7 @@ cd blog-app
 npm install
 ```
 
-### Install and configure Tailwind (for Vite)
+### 2. Install and configure Tailwind (for Vite)
 ```sh
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
@@ -24,7 +24,7 @@ or in `index.html`, add
   </head>
 ```
 
-### Install react-router-dom
+### 3. Install and Setup react-router-dom
 ```sh
 npm install react-router-dom
 ```
@@ -79,4 +79,50 @@ const Navbar = () => {
     </div>
   )
 }
+```
+
+### 4. SidePanel
+
+```tsx
+import React from 'react'
+
+const SidePanel = () => {
+  return (
+    <div className='shadow-lg'>
+        <div className='text-center py-5'>
+        ...
+            <div>
+            ...
+                <div>
+                    Start Writing today!
+                </div>
+                ...
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default SidePanel
+```
+
+In `Home.tsx`
+```tsx
+import React from 'react'
+import SidePanel from './SidePanel'
+
+const Home = () => {
+  return (
+    <div >
+        <div>
+            ...
+            <div>
+                <SidePanel/>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default Home
 ```
