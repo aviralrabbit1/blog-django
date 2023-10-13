@@ -127,11 +127,20 @@ const Home = () => {
 export default Home
 ```
 
-### 5. Material UI
+### 5. Install material UI - Use icons from [Material UI](https://mui.com/material-ui/material-icons/)
+
 ```sh
 npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 or
 ```sh
 pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
+
+### 6. Install `axios` 
+- It is a promise based HTTP client for the browser and (node.js)
+- It can Make XMLHttpRequests from the browser, Make http requests from node.js, Supports the Promise API
+- Intercept, Transform and/or Cancel request and response (and response data)
+```sh
+pnpm install axios
 ```
