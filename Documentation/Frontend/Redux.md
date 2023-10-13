@@ -1,3 +1,8 @@
+### Redux toolkit
+
+In `src/features/blogs/BloggerSlice.ts`,
+
+```ts
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // Importing Axios for making HTTP requests and Redux Toolkit - for state management.
@@ -21,7 +26,7 @@ export interface UserType {
 }
 
 export interface BloggerSliceState {
-    posts: PostType[];
+    posts: Post[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
     categoryFilter: string | null;
@@ -79,3 +84,16 @@ export const getPostsError = (state: { posts: BloggerSliceState }) => state.post
 export const selectCategoryFilter = (state: { posts: BloggerSliceState }) => state.posts.categoryFilter;
 
 export default postsSlice.reducer;
+```
+
+Import `postReducer` in `frontend/blog-app/src/app/store.ts`,
+```ts
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
+import postReducer from '../features/blogs/BloggerSlice';
+
+export const store = configureStore({
+  reducer: {
+    posts: postReducer
+  },
+})
+```
