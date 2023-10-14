@@ -52,7 +52,7 @@ const Home = () => {
         // console.log(`Post is ${post}`);
 
         content = jsonresultArray.map((post: PostType) => (
-          <BlogExcerpt key={post.id} postId={post.id} post={post} />
+          <BlogExcerpt key={post.id} post={post} />
         ));
       }
     }

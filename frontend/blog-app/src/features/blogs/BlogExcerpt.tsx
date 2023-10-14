@@ -3,10 +3,9 @@ import { BloggerSliceState, PostType } from './BloggerSlice'
 
 interface BlogExcerptProps {
   post: PostType;
-  postId: number;
 }
 
-const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post, postId }) => {
+const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post }) => {
 
   // Destructuring post
   const { id, title, description, image_url, date_posted, owner, category  } = post;
