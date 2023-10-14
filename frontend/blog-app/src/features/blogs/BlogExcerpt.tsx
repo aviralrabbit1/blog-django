@@ -2,18 +2,22 @@ import React from 'react'
 import { BloggerSliceState, PostType } from './BloggerSlice'
 
 interface BlogExcerptProps {
-  post: PostType[];
+  post: PostType;
   postId: number;
 }
 
 const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post, postId }) => {
+
+  // Destructuring post
+  const { id, title, description, image_url, date_posted, owner, category  } = post;
+
   return (
     <div>
       {/* Access post and postId in your component */}
-      {/* <h2>{post.title}</h2>
-      <p>{post.description}</p> */}
-      <p>Post ID: {postId}</p>
-      <p>Post = {post}</p>
+      <p>Post ID: {id}</p>
+      <h2>Title: {post.title}</h2>
+      <p> Description: {post.description}</p>
+      {/* <p>Post = {post}</p> */}
     </div>
   );
 };

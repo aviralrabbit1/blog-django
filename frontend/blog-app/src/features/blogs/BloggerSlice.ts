@@ -10,7 +10,7 @@ export interface PostType { // based on backend/BlogApp/models.py
     description: string;
     image_url: string;
     date_posted: string; 
-    owner: UserType; // owner's user ID.
+    owner: number; // owner's user ID.
     category: number; // category's ID.
 }
 
