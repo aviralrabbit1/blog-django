@@ -8,8 +8,8 @@ export interface PostType { // based on backend/BlogApp/models.py
     id: number;
     title: string;
     description: string;
-    image_url: URL;
-    date_posted: Date; 
+    image_url: string;
+    date_posted: string; 
     owner: UserType; // owner's user ID.
     category: number; // category's ID.
 }
@@ -21,7 +21,7 @@ export interface UserType {
 }
 
 export interface BloggerSliceState {
-    posts: PostType[];
+    posts?: PostType[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
     categoryFilter: string | null;
@@ -73,7 +73,7 @@ const postsSlice = createSlice({
 
 export const { setCategoryFilter } = postsSlice.actions;
 
-export const selectAllPosts = (state: { posts: BloggerSliceState }) => state.posts.posts;
+export const selectAllPosts = (state: { posts: { posts: any; }; }) => state.posts.posts;
 export const getPostsStatus = (state: { posts: BloggerSliceState }) => state.posts.status;
 export const getPostsError = (state: { posts: BloggerSliceState }) => state.posts.error;
 export const selectCategoryFilter = (state: { posts: BloggerSliceState }) => state.posts.categoryFilter;

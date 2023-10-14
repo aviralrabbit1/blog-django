@@ -1,10 +1,21 @@
 import React from 'react'
 import { BloggerSliceState, PostType } from './BloggerSlice'
 
-const BlogExcerpt = (props: PostType[]) => {
-  return (
-    <div>BlogExcerpt</div>
-  )
+interface BlogExcerptProps {
+  post: PostType[];
+  postId: number;
 }
 
-export default BlogExcerpt
+const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post, postId }) => {
+  return (
+    <div>
+      {/* Access post and postId in your component */}
+      {/* <h2>{post.title}</h2>
+      <p>{post.description}</p> */}
+      <p>Post ID: {postId}</p>
+      <p>Post = {post}</p>
+    </div>
+  );
+};
+
+export default BlogExcerpt;
