@@ -18,16 +18,15 @@ const Home = () => {
       // console.log(` Now, allpostsString is ${allpostsString}`);
 
       const jsonformattedString = allpostsString
+        .split(')OrderedDict(').join(',')
+        .replace('OrderedDict(', '') // Replace OrderedDict( with [
         .replace(/'/g, '"')
         .replace(/",/g, '":') // Replace ', with :
         .replace(/\),/g, ',') // Replace ), with ,
         .replace(/\[/g, '{') // Replace [ with {
         .replace(/\)]/g, '}') // Replace ] with }
-        .replace(')OrderedDict(', ',') // Replace )OrderedDict( with ,
-        .replace('OrderedDict(', '') // Replace OrderedDict( with [
         .replace(/\("/g, '"')
-        .replace(/\)/g, '');
-      // .replace(/'/g, '"');
+        .replace(/\)/g, '')
 
       // Parse the formatted string into a JavaScript array
       // console.log(jsonformattedString);
@@ -52,7 +51,7 @@ const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post }) => {
   const { id, title, description, image_url, date_posted, owner, category  } = post;
   return (
     <div>
-      {/* Access post and postId in your component */}
+      {/* Access post in your component */}
       <p>Post ID: {id}</p>
       <h2>Title: {post.title}</h2>
       <p> Description: {post.description}</p>

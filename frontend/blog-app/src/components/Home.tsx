@@ -32,16 +32,15 @@ const Home = () => {
       // console.log(` Now, allpostsString is ${allpostsString}`);
 
       const jsonformattedString = allpostsString
+        .split(')OrderedDict(').join(',')
+        .replace('OrderedDict(', '') // Replace OrderedDict( with [
         .replace(/'/g, '"')
         .replace(/",/g, '":') // Replace ', with :
         .replace(/\),/g, ',') // Replace ), with ,
         .replace(/\[/g, '{') // Replace [ with {
         .replace(/\)]/g, '}') // Replace ] with }
-        .replace(')OrderedDict(', ',') // Replace )OrderedDict( with ,
-        .replace('OrderedDict(', '') // Replace OrderedDict( with [
         .replace(/\("/g, '"')
-        .replace(/\)/g, '');
-      // .replace(/'/g, '"');
+        .replace(/\)/g, '')
       // Parse the formatted string into a JavaScript array
       // console.log(jsonformattedString);
 
@@ -64,7 +63,7 @@ const Home = () => {
     <div className='container m-auto mt-5'>
       <div className='grid grid-cols-3 gap-4'>
         <div className='col-span-2 shadow-lg text-center pl-12 py-3'>
-          <div>{content}</div>
+          <div className='container mx-auto grid grid-cols-2 gap-2'>{content}</div>
         </div>
         <div>
           <SidePanel />
