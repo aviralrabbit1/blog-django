@@ -41,3 +41,9 @@ def user_registration(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def postdetails(request, pk):
+    post = Post.objects.get(pk=pk)
+    serialize = PostSerializer(post)
+    return HttpResponse(serialize.data) 
+    

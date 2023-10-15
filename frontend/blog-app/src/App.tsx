@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import OneBlog from "./components/OneBlog";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
+          <Route path='/blog/:id' element={<OneBlog />} />
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
         </Routes>
