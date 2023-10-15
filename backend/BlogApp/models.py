@@ -25,3 +25,13 @@ class Post(models.Model):
     # (e.g., when viewing them in the Django admin panel).
     def __str__(self):
         return self.title
+    # def custom_object(self):
+    #     return {
+    #         'id': self.id,
+    #         'title': self.title,
+    #         'description': self.description,
+    #         'image_url': self.image_url,
+    #         'date_posted': self.date_posted,
+    #         'owner': self.owner.username,  # Example: Get the owner's username
+    #         'category': self.category.name  # Example: Get the category's name
+    #     }
