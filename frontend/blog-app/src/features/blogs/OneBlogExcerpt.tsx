@@ -1,14 +1,13 @@
 import React from 'react';
-import { BloggerSliceState, PostType } from './BloggerSlice';
+import { PostType } from './BloggerSlice';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Link } from 'react-router-dom';
 
-interface BlogExcerptProps {
-  post: PostType,
-  postId: number
+interface OneBlogExcerptProps {
+  post: PostType;
 }
 
-const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post, postId }) => {
+const OneBlogExcerpt: React.FC<OneBlogExcerptProps> = ({ post }) => {
 
   // Destructuring post
   const { id, title, description, image_url, date_posted, owner, category  } = post;
@@ -33,15 +32,11 @@ const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post, postId }) => {
         </div>
         {/* <p>Post ID: {id}</p> */}
         <h1 className='font-bold' >{title}</h1>
-        <p>{description.substring(0,90)}... 
-          <Link to={`/blog/${id}`}>
-            <span className='font-bold text-blue-500 underline'>Read more</span>
-          </Link>
-        </p>
+        <p>{description}</p>
         {/* <p>Post = {post}</p> */}
       </div>
     </div>
   );
 };
 
-export default BlogExcerpt;
+export default OneBlogExcerpt;
