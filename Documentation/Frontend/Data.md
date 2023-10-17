@@ -61,3 +61,47 @@ const BlogExcerpt: React.FC<BlogExcerptProps> = ({ post }) => {
 };
 export default BlogExcerpt;
 ```
+
+For individual blog page `frontend/blog-app/src/components/OneBlog.tsx`
+```tsx
+...
+
+if (postsStatus === 'succeeded' && allpostsString !== undefined) {
+      // const allpostsString: string = useSelector(selectAllPosts); // selects data from the store
+        // console.log(` Now, allpostsString is ${allpostsString}`);
+  
+        const jsonformattedString = allpostsString
+          .split(')OrderedDict(').join(',')
+          .replace('OrderedDict(', '') // Replace OrderedDict( with [
+          .replace(/'/g, '"')
+          .replace(/",/g, '":') // Replace ', with :
+          .replace(/\),/g, ',') // Replace ), with ,
+          .replace(/\[/g, '{') // Replace [ with {
+          .replace(/\)]/g, '}') // Replace ] with }
+          .replace(/\("/g, '"')
+          .replace(/\)/g, '')
+
+        // Parse the formatted string into a JavaScript array
+        const jsonresultArray = JSON.parse(`[${jsonformattedString}]`);
+        // console.log(jsonformattedString);
+        // console.log("inside jsonresultArray =",jsonresultArray)
+        
+        // console.log("finding id ", jsonresultArray.find(item => jsonresultArray.id == 4));
+
+        function findObjectWithId(id: string | undefined) {
+          return jsonresultArray.find((item: { id: string | undefined; }) => item.id == id);
+        }
+
+        const result = findObjectWithId(curr_id);
+
+        if (result) {
+          console.log(`JSON for id ${curr_id}:`, result);
+        } else {
+          console.log(`No object with id ${curr_id} found.`);
+        }
+
+        content = <OneBlogExcerpt post={result}/>       
+      
+    }
+    ...
+```

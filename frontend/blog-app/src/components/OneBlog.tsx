@@ -8,16 +8,11 @@ import {
   fetchPosts,
   PostType,
 } from '../features/blogs/BloggerSlice';
-import BlogExcerpt from '../features/blogs/BlogExcerpt';
 import OneBlogExcerpt from '../features/blogs/OneBlogExcerpt';
 
 const OneBlog = () => {
   const { id } = useParams(); // Get the "id" parameter from the URL
   // console.log("id from params = ", id);
-  const curr_id = id;
-
-  const [post, setPost] = useState<PostType | null>(null);
-  // console.log(jsonresultArray);
 
     const dispatch = useDispatch(); // dispatches actions to the store
 
@@ -49,24 +44,24 @@ const OneBlog = () => {
           .replace(/\)]/g, '}') // Replace ] with }
           .replace(/\("/g, '"')
           .replace(/\)/g, '')
+
         // Parse the formatted string into a JavaScript array
-        // console.log(jsonformattedString);
-          
         const jsonresultArray = JSON.parse(`[${jsonformattedString}]`);
         // console.log(jsonformattedString);
         // console.log("inside jsonresultArray =",jsonresultArray)
-        console.log("finding id ", jsonresultArray.find(item => jsonresultArray.id == 4));
+
+        // console.log("finding id ", jsonresultArray.find(item => jsonresultArray.id == 4));
 
         function findObjectWithId(id: string | undefined) {
           return jsonresultArray.find((item: { id: string | undefined; }) => item.id == id);
         }
 
-        const result = findObjectWithId(curr_id);
+        const result = findObjectWithId(id);
 
         if (result) {
-          console.log(`JSON for id ${curr_id}:`, result);
+          console.log(`JSON for id ${id}:`, result);
         } else {
-          console.log(`No object with id ${curr_id} found.`);
+          console.log(`No object with id ${id} found.`);
         }
 
         content = <OneBlogExcerpt post={result}/>       
