@@ -34,7 +34,7 @@ const OneBlog = () => {
     } else if (postsStatus === 'succeeded' && allpostsString !== undefined) {
       // const allpostsString: string = useSelector(selectAllPosts); // selects data from the store
         // console.log(` Now, allpostsString is ${allpostsString}`);
-  
+      /*
         const jsonformattedString = allpostsString
           .split(')OrderedDict(').join(',')
           .replace('OrderedDict(', '') // Replace OrderedDict( with [
@@ -48,10 +48,10 @@ const OneBlog = () => {
 
         // Parse the formatted string into a JavaScript array
         const jsonresultArray = JSON.parse(`[${jsonformattedString}]`);
-        // console.log(jsonformattedString);
-        // console.log("inside jsonresultArray =",jsonresultArray)
+        console.log(jsonformattedString);
+        console.log("inside jsonresultArray =",jsonresultArray)
 
-        // console.log("finding id ", jsonresultArray.find(item => jsonresultArray.id == 4));
+        console.log("finding id ", jsonresultArray.find(item => jsonresultArray.id == 4));
 
         function findObjectWithId(id: string | undefined) {
           return jsonresultArray.find((item: { id: string | undefined; }) => item.id == id);
@@ -60,12 +60,12 @@ const OneBlog = () => {
         const result = findObjectWithId(id);
 
         if (result) {
-          // console.log(`JSON for id ${id}:`, result);
+          console.log(`JSON for id ${id}:`, result);
         } else {
           console.log(`No object with id ${id} found.`);
         }
 
-        content = <OneBlogExcerpt post={result}/>       
+        content = <OneBlogExcerpt post={result}/>       */
       
     } else if (postsStatus === 'failed') {
       content = <p> Failed due to {postsError} </p>;

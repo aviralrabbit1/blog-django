@@ -6,6 +6,7 @@ import {
   getPostsError,
   fetchPosts,
   PostType,
+  selectCategoryFilter,
 } from './BloggerSlice';
 
 import BlogExcerpt from './BlogExcerpt';
@@ -15,10 +16,12 @@ let dataJson = [];
 const Data = () => {
     const dispatch = useDispatch(); // dispatches actions to the store
 
-    const allpostsString: string = useSelector(selectAllPosts); // selects data from the store
+    const allpostsString = useSelector(selectAllPosts); // selects data from the store
   
     const postsStatus = useSelector(getPostsStatus);
     const postsError = useSelector(getPostsError);
+
+    const categoryFilter = useSelector(selectCategoryFilter);
   
     useEffect(() => {
       if (postsStatus === 'idle') {
@@ -33,7 +36,15 @@ const Data = () => {
     } else if (postsStatus === 'succeeded' && allpostsString !== undefined) {
       // const allpostsString: string = useSelector(selectAllPosts); // selects data from the store
         // console.log(` Now, allpostsString is ${allpostsString}`);
-  
+        console.log(typeof (allpostsString))
+        
+        content = allpostsString.map((post: PostType) => (
+            // console.log(post.id)
+            <BlogExcerpt key={post.id} post={post} postId={post.id}/>            
+          ));
+
+        /*
+        // Used when directly editing the string(allpostsString)
         const jsonformattedString = allpostsString
           .split(')OrderedDict(').join(',')
           .replace('OrderedDict(', '') // Replace OrderedDict( with [
@@ -50,16 +61,21 @@ const Data = () => {
         insideData = jsonformattedString;
         
         const jsonresultArray = JSON.parse(`[${jsonformattedString}]`);
-        // console.log(jsonformattedString);
-        // console.log("inside insideData =",insideData)
+        const jsonresultArray = JSON.parse(`[{allpostsString}]`);
+        console.log(jsonresultArray);
+        console.log("inside insideData =",insideData)
+
+        content = allpostsString.map((post: PostType) => (
+            <BlogExcerpt key={post.id} post={post} postId={post.id}/>
+          ));
   
         for (let post of jsonresultArray) {
-          // console.log(`Post is ${post}`);
+          console.log(`Post is ${post}`);
   
           content = jsonresultArray.map((post: PostType) => (
             <BlogExcerpt key={post.id} post={post} postId={post.id}/>
           ));
-        }
+        } */
       
     } else if (postsStatus === 'failed') {
       content = <p> Failed due to {postsError} </p>;
