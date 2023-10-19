@@ -9,6 +9,7 @@ import {
   PostType,
 } from '../features/blogs/BloggerSlice';
 import OneBlogExcerpt from '../features/blogs/OneBlogExcerpt';
+import SidePanel from './SidePanel';
 
 const OneBlog = () => {
   const { id } = useParams(); // Get the "id" parameter from the URL
@@ -59,7 +60,7 @@ const OneBlog = () => {
         const result = findObjectWithId(id);
 
         if (result) {
-          console.log(`JSON for id ${id}:`, result);
+          // console.log(`JSON for id ${id}:`, result);
         } else {
           console.log(`No object with id ${id} found.`);
         }
@@ -72,17 +73,13 @@ const OneBlog = () => {
 
   // Render the full blog post details
   return (
-    <div>
-      {content ? (
-        <>
-          {/* <h1>{post.title}</h1>
-          <p>{post.description}</p> */}
-          {content}
-          {/* Display other post details */}
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
+    <div className='container m-auto mt-5' >
+      <div className='grid grid-cols-3 gap-4' >
+        <div className='col-span-2 shadow-lg text-center'>
+          <div className='container'>{content} </div>
+        </div>
+        <div><SidePanel /></div>
+      </div>
     </div>
   );
 };

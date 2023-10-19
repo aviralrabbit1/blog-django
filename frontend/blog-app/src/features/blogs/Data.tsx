@@ -64,7 +64,7 @@ const Data = () => {
     } else if (postsStatus === 'failed') {
       content = <p> Failed due to {postsError} </p>;
     }
-    console.log("inside outside insideData =",insideData)
+    // console.log("inside outside insideData =",insideData)
 
   return (
     <div className='container mx-auto grid grid-cols-2 gap-2'>{content}</div>

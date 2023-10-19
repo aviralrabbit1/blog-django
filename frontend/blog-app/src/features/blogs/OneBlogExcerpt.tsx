@@ -15,25 +15,22 @@ const OneBlogExcerpt: React.FC<OneBlogExcerptProps> = ({ post }) => {
   const date = post && date_posted ? new Date(date_posted) : new Date();
   let options = {year: "numeric", month:"long", day:"numeric"};
   const formatDate = date.toLocaleDateString("en-US", options);
+
   return (
-    <div className='w-80 shadow-lg' >
+    <div className='mt-2' >
+      <div className='flex bg-purple-500 justify-around text-white font-bold text-lg items-center'>
+        <h5>Posted by: {owner}</h5>
+            <p className='flex gap-1 items-center'>
+              <AccessTimeIcon className='text-sm' />
+              {formatDate}
+            </p>
+      </div>
       {/* Access post and postId in your component */}
-      <img className='object-cover rounded-lg w-full h-72'
-      src={image_url} alt={`${id}`} />
-      <div className='mb-3'>
-        <div className='flex justify-between items-center px-3 mt-3 bg-purple-600 text-white font-semibold'> 
-          <div>
-            <p>Posted by: {owner}</p>
-          </div>
-          <div>
-            <AccessTimeIcon className='text-sm me-2' />
-            {formatDate}
-          </div>
-        </div>
-        {/* <p>Post ID: {id}</p> */}
-        <h1 className='font-bold' >{title}</h1>
-        <p>{description}</p>
-        {/* <p>Post = {post}</p> */}
+      <img className='object-contain rounded-lg px-2 mt-3 h-96 w-full'
+      src={image_url} alt={`${title}`} />
+      <div className='mt-3 text-center'>
+        <h1 className='font-extrabold text-2xl underline cursor-pointer'>{title} </h1>
+        <p className='mt-2 text-start ml-3 antialiased'>{description} </p>
       </div>
     </div>
   );
