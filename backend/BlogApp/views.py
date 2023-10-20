@@ -24,13 +24,13 @@ def home(request):
 def category(request):
     categories = Category.objects.all()
     serialize = CategorySerializer(categories, many = True)
-    return HttpResponse(serialize.data)
+    return HttpResponse(json.dumps(serialize.data))
 
 @api_view(['GET'])
 def users(request):
     user = User.objects.all()
     serialize = UserSerializer(user, many = True)
-    return HttpResponse(serialize.data)
+    return HttpResponse(json.dumps(serialize.data))
 
 @api_view(['POST'])
 def user_registration(request):
@@ -43,9 +43,9 @@ def user_registration(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def postdetails(request, pk):
-    id = request.GET.get('id', None)
-    post = Post.objects.get(pk=pk)
+def postdetails(request, id):
+    # id = request.GET.get('id', None)
+    post = Post.objects.get(pk=id)
     serialize = PostSerializer(post)
     return HttpResponse(json.dumps(serialize.data))
     

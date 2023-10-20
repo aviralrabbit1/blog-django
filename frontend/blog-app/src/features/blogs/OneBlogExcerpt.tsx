@@ -7,13 +7,20 @@ interface OneBlogExcerptProps {
   post: PostType;
 }
 
+interface optionsType {
+  year: "numeric" | undefined, 
+  month:"numeric" | "2-digit" | "long" | "short" | "narrow" | undefined, 
+  day:"numeric" | "2-digit" | undefined
+}
+
 const OneBlogExcerpt: React.FC<OneBlogExcerptProps> = ({ post }) => {
 
   // Destructuring post
+  // console.log(post)
   const { id, title, description, image_url, date_posted, owner, category  } = post;
 
   const date = post && date_posted ? new Date(date_posted) : new Date();
-  let options = {year: "numeric", month:"long", day:"numeric"};
+  let options: optionsType = {year: "numeric", month:"2-digit", day:"numeric"};
   const formatDate = date.toLocaleDateString("en-US", options);
 
   return (
