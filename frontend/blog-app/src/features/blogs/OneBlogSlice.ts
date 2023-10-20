@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PostType } from './BloggerSlice';
 // Importing Axios for making HTTP requests and Redux Toolkit - for state management.
 
 const apiURL = "http://127.0.0.1:8000/blog"; // base URL for Django API.
 
 export interface BloggerSliceState {
-    post?: PostType[];
+    post: PostType;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
 }
@@ -19,10 +19,10 @@ const initialState: BloggerSliceState = {
   };
 
 export const fetchPostById = createAsyncThunk(
-    "posts/fetchPostById", 
+    "post/fetchPostById", 
     async (postId) => {
-        const response = await axios.get(`${apiURL}/${postId}/`);
-        console.log(response);
+        const response = await axios.get(`${apiURL}/${postId}`);
+        // console.log(response);
         return response.data;
     }
 );

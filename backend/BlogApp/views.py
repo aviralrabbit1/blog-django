@@ -6,6 +6,7 @@ from rest_framework import status
 from .serializers import *
 from .models import *
 from django.contrib.auth.models import User
+import json 
 
 # Create your views here.
 
@@ -16,20 +17,20 @@ def home(request):
     serialize = PostSerializer(posts, many = True) # creates a serializer instance called serialize 
     # by passing the Post objects (posts) to the PostSerializer. 
     # many=True argument indicates serializing a queryset with multiple objects.
-    return HttpResponse(serialize.data) 
+    return HttpResponse(json.dumps(serialize.data)) 
     # returns an HTTP response containing the serialized data as the response content
 
 @api_view(['GET'])
 def category(request):
     categories = Category.objects.all()
     serialize = CategorySerializer(categories, many = True)
-    return HttpResponse(serialize.data)
+    return HttpResponse(json.dumps(serialize.data))
 
 @api_view(['GET'])
 def users(request):
     user = User.objects.all()
     serialize = UserSerializer(user, many = True)
-    return HttpResponse(serialize.data)
+    return HttpResponse(json.dumps(serialize.data))
 
 @api_view(['POST'])
 def user_registration(request):
@@ -42,8 +43,9 @@ def user_registration(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def postdetails(request, pk):
-    post = Post.objects.get(pk=pk)
+def postdetails(request, id):
+    # id = request.GET.get('id', None)
+    post = Post.objects.get(pk=id)
     serialize = PostSerializer(post)
-    return HttpResponse(serialize.data) 
+    return HttpResponse(json.dumps(serialize.data))
     
