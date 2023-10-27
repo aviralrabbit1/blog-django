@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectCategoryFilter, setCategoryFilter } from '../features/blogs/BloggerSlice';
+import { CategoryType, selectCategoryFilter, setCategoryFilter } from '../features/blogs/BloggerSlice';
 import { fetchCategories, selectAllCategories } from '../features/blogs/CategorySlice';
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
   
   const categoryFilter = useSelector(selectCategoryFilter);
   console.log(`category filter = ${categoryFilter}`);
-  const categories = useSelector(selectAllCategories);
+  const categories: CategoryType[] = useSelector(selectAllCategories);
   console.log(`Categories are = ${categories}`);
 
   useEffect(() => {
