@@ -4,14 +4,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const apiURL = "http://127.0.0.1:8000/blog"; // base URL for Django API.
 
-export interface PostType { // based on backend/BlogApp/models.py
+export interface CategoryType {
+    id: number,
+    name: string
+}
+
+export interface PostType {
     id: number;
     title: string;
     description: string;
     image_url: string;
     date_posted: string; 
     owner: number; // owner's user ID.
-    category: number; // category's ID.
+    category: CategoryType; // category's ID.
 }
 
 export interface UserType {
@@ -73,7 +78,7 @@ const postsSlice = createSlice({
 
 export const { setCategoryFilter } = postsSlice.actions;
 
-export const selectAllPosts = (state: { posts: { posts: any; }; }) => state.posts.posts;
+export const selectAllPosts = (state: { posts: BloggerSliceState }) => state.posts.posts;
 export const getPostsStatus = (state: { posts: BloggerSliceState }) => state.posts.status;
 export const getPostsError = (state: { posts: BloggerSliceState }) => state.posts.error;
 export const selectCategoryFilter = (state: { posts: BloggerSliceState }) => state.posts.categoryFilter;
