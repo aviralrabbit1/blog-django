@@ -10,7 +10,6 @@ export interface CategoryType {
 }
 
 export interface PostType {
-    [x: string]: any; // based on backend/BlogApp/models.py
     id: number;
     title: string;
     description: string;
